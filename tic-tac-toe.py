@@ -30,16 +30,16 @@ def main():
 #Toggle to next player if check_win is false or if it's checked_slot is false
     while not (check_win(board) or checked_slot(board, player1, player2)):
         display_board(board)
-        current = current_player("", player1, player2)
+        current = current_player(current, player1, player2)
         player_choice = player_input(current)
         
-        break 
+        draw_board(player_choice, current, board)
+        
 #Check and display a message if there is a winner. Then the game stop.
     while check_win(board) == True:
+        display_board(board)
         print ("We have a win! Game is Over! Thanks for playing")
         break
-      
- 
 '''Call the function named "display_board()" that takes as parameter (board)
 This function should display the board'''
 def display_board(board):
