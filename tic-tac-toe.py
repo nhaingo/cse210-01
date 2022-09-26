@@ -25,14 +25,13 @@ def main():
 #After each turn, the board should be checked to verify if there's a win. The function check_win() will take the parameter as board
 
     check_win(board)
-#After each turn, the board should be checked to verify if there are unchecked slots. The function checked_slot() will take as paramteres board, player1 and player2.
+#After each turn, the board should be checked to verify if there are unchecked slots. The function checked_slot() will take as paramaters board, player1 and player2.
     checked_slot(board, player1, player2)
 #Toggle to next player if check_win is false or if it's checked_slot is false
     while not (check_win(board) or checked_slot(board, player1, player2)):
         display_board(board)
         current = current_player(current, player1, player2)
         player_choice = player_input(current)
-        
         draw_board(player_choice, current, board)
         
 #Check and display a message if there is a winner. Then the game stop.
@@ -40,6 +39,11 @@ def main():
         display_board(board)
         print ("We have a win! Game is Over! Thanks for playing")
         break
+#The following while condition is to print a message if there is no winner and all the slots are filled.
+    while((check_win(board)==False) and (checked_slot(board, player1, player2)==True)):
+        display_board(board)
+        print("We have a draw game. Please refresh the game if you want to play again")
+        break  
 '''Call the function named "display_board()" that takes as parameter (board)
 This function should display the board'''
 def display_board(board):
@@ -92,7 +96,7 @@ def check_win(board):
         board[0][2] == board[1][2] == board[2][2] or
         board[0][0] == board[1][1] == board[2][2] or
         board[0][2] == board[1][1] == board[2][0])
-'''Call the function checked_slot that take 3 parameters: board, player1, player2 and return. For is used to iterate each slot in each row.
+'''Call the function checked_slot that take 3 parameters: board, player1, player2 and return. For loop is used to iterate each slot in each row.
 The function return true if each slot in each row is X or O'''
 def checked_slot(board, player1, player2):
     for row in board:
